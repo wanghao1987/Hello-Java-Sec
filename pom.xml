@@ -315,8 +315,8 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <!-- OWASP 生成物料清单SBOM，提供Dependency Track分析 -->
+           <!--  <plugin>
+                OWASP 生成物料清单SBOM，提供Dependency Track分析
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
                 <version>2.7.2</version>
@@ -332,7 +332,7 @@
                     <outputFormat>xml</outputFormat>
                 </configuration>
             </plugin>
-
+ -->
 
         </plugins>
     </build>
