@@ -298,6 +298,7 @@
 
 
     <build>
+    	<finalName>myapp</finalName>
         <plugins>
             <!-- 用于maven构建 -->
             <plugin>

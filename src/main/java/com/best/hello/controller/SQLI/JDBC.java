@@ -1,6 +1,8 @@
 package com.best.hello.controller.SQLI;
 
+import com.best.hello.entity.JsonResult;
 import com.best.hello.util.Security;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -12,7 +14,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
@@ -46,6 +50,89 @@ public class JDBC {
     @Value("${spring.datasource.password}")
     private String db_pass;
 
+    
+    /**
+     * @poc http://127.0.0.1:8888/SQLI/JDBC/vul1?id=1' and updatexml(1,concat(0x7e,(SELECT user()),0x7e),1)--%20+
+     * 
+     * // aaaa' or 1=1 union select 1,'2
+     */
+   
+    @RequestMapping("/vulJdbc")
+	@ResponseBody
+    public JsonResult vulJdbc(String username, String password) {
+
+    	// 创建JsonResult对象
+    			JsonResult jsonResult = new JsonResult();
+    		    
+    			Connection conn = null;
+    			try {
+//    			   
+    			    conn =
+    					       DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=America/New_York&" +
+    					                                   "user=root&password=root");
+
+    			    
+    			} catch (SQLException ex) {
+    			    // handle any errors
+    			    System.out.println("SQLException: " + ex.getMessage());
+    			    System.out.println("SQLState: " + ex.getSQLState());
+    			    System.out.println("VendorError: " + ex.getErrorCode());
+    			}
+    			
+    			Statement stmt = null;
+    			ResultSet rs = null;
+
+    			try {
+    				// aaaa' or 1=1 union select 1,'2
+    			    stmt = conn.createStatement();
+    			    String sql = "SELECT username, password FROM t_user where username = '" + username + "' and password = '" + password +"'";
+    			    System.out.println(sql);
+    			    rs = stmt.executeQuery(sql);
+    			    
+    			    if(rs.next()) {
+    			    	jsonResult.setState(1);
+    			    }else {
+    			    	jsonResult.setState(2);
+    			    }	
+    			    jsonResult.setSql(sql);
+    			    
+    			}
+    			catch (SQLException ex){
+    			    // handle any errors
+    			    System.out.println("SQLException: " + ex.getMessage());
+    			    System.out.println("SQLState: " + ex.getSQLState());
+    			    System.out.println("VendorError: " + ex.getErrorCode());
+    			}
+    			finally {
+    			    // it is a good idea to release
+    			    // resources in a finally{} block
+    			    // in reverse-order of their creation
+    			    // if they are no-longer needed
+
+    			    if (rs != null) {
+    			        try {
+    			            rs.close();
+    			        } catch (SQLException sqlEx) { } // ignore
+
+    			        rs = null;
+    			    }
+
+    			    if (stmt != null) {
+    			        try {
+    			            stmt.close();
+    			        } catch (SQLException sqlEx) { } // ignore
+
+    			        stmt = null;
+    			    }
+    			}
+    			
+    			
+    		    // 返回结果
+    			return jsonResult;
+    }
+
+    
+    
     /**
      * @poc http://127.0.0.1:8888/SQLI/JDBC/vul1?id=1' and updatexml(1,concat(0x7e,(SELECT user()),0x7e),1)--%20+
      */

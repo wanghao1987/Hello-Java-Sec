@@ -29,7 +29,7 @@ public class Login {
         // 验证码复用
         if (!CaptchaUtil.ver(captcha, request)) {
             CaptchaUtil.clear(request);
-            model.addAttribute("msg", "验证码不正确");
+            model.addAttribute("msg", "Invalid code");
             return "login";
         }
 
@@ -37,14 +37,14 @@ public class Login {
             // 创建JWT Token
             String token = JwtUtils.generateToken(username);
             Cookie cookie = new Cookie(COOKIE_NAME, token);
-            cookie.setHttpOnly(true);
+            cookie.setHttpOnly(false);
             cookie.setMaxAge(60 * 60 * 24);
             cookie.setPath("/");
             response.addCookie(cookie);
             session.setAttribute("LoginUser", username);
             return "redirect:/index";
         } else {
-            model.addAttribute("msg", "用户名或者密码错误");
+            model.addAttribute("msg", "Invalid username or password");
             return "login";
         }
     }
