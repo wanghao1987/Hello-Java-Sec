@@ -13,35 +13,37 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="vul_header">
-                <span>Stored XSS Attack</span>
+                <span>XSS漏洞</span>
             </div>
             <h3></h3>
             <hr>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bug"></span>
-                        Vulnerability description</a>
+                        漏洞描述</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> Secure Coding</a>
+                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> 安全编码</a>
                 </li>
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">
-                    Stored attacks are those where the injected script is permanently stored on the target servers, such as in a database, in a message forum, visitor log, comment field, etc. The victim then retrieves the malicious script from the server when it requests the stored information. Stored XSS is also sometimes referred to as Persistent or Type-II XSS.
+                    XSS (Cross-Site Scripting)
+                    跨站脚本攻击是一种Web安全漏洞，攻击者通过在Web页面中注入恶意代码，如JavaScript脚本，来攻击用户，利用Web应用程序对用户输入数据的信任，以盗取用户信息、会话信息或在用户浏览器上执行其他恶意操作。<br><br>
+                    存储型 XSS 是将恶意代码存储到 Web 应用程序的数据库或文件系统中，并在 Web 页面中展示，当用户访问这个页面时，恶意代码会被执行。
                 </div>
                 <div class="tab-pane fade" id="bb">
                     <textarea disabled="disabled" class="form-control shadow-sm p-3 mb-5 rounded" id="coder"
                               style="height: 260px;">
-【Mandatory】Encode external input before concatenating it into the response page.
-When the response "content-type" is of "html" type, external input concatenated into the response packet must be encoded according to the output position. Encode the following 6 special characters into HTML entities (&, <, >, ", ', /), or refer to and directly use mature third-party libraries such as ESAPI.
+【必须】外部输入拼接到response页面前进行编码处理
+ 当响应“content-type”为“html”类型时，外部输入拼接到响应包中，需根据输出位置进行编码处理,需要对以下6个特殊字符进行HTML实体编码(&, <, >, ", ',/)，也可参考或直接使用业界已有成熟第三方库如ESAPI。
 
-【Mandatory】Set the correct HTTP response packet type.
-The HTTP header "Content-Type" of the response packet must be correctly configured with the type of the response packet, and it is forbidden to set non-HTML types of response packets to "text/html". This action will cause the browser to interpret non-HTML format response messages as HTML when accessing the link directly, increasing the chance of triggering reflective XSS.
+【必须】设置正确的HTTP响应包类型
+ 响应包的HTTP头“Content-Type”必须正确配置响应包的类型，禁止非HTML类型的响应包设置为“text/html”。此举会使浏览器在直接访问链接时，将非HTML格式的返回报文当做HTML解析，增加反射型XSS的触发几率。
 
-【Recommendation】Set secure HTTP response headers.
-Control the Cookie field for user login authentication, and set the HttpOnly attribute to prevent XSS vulnerabilities/JavaScript manipulation leaks.
+【建议】设置安全的HTTP响应头
+ 控制用户登录鉴权的Cookie字段 应当设置HttpOnly属性以防止被XSS漏洞/JavaScript操纵泄漏。
                     </textarea>
                 </div>
             </div>

@@ -48,15 +48,14 @@
         <li class="nav-item">
             <!-- todo -->
             <a class="btn btn-sm btn-default" style="color:white" target="_blank"
-               href="https://github.com/Tencent/secguide/blob/main/Java%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97.md">安全编码指南</a>
-            <a class="btn btn-sm btn-default" style="color:white" target="_blank"
-               href="https://github.com/j3ers3/Hello-Java-Sec">Github</a>
+               href="https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-218.pdf">Secure Coding Best Practices</a>
+            
             <a th:if="${session.LoginUser} == null" class="btn btn-sm btn-default" style="color:white"
-               th:href="@{/login}"> 登录</a>
+               th:href="@{/login}"> Login</a>
             <a th:if="${session.LoginUser} != null" class="btn btn-sm btn-default" style="color:white"
                th:text="${session.LoginUser}"></a>
             <a th:if="${session.LoginUser} != null" class="btn btn-sm btn-default" style="color:white"
-               th:href="@{/user/logout}">注销</a>
+               th:href="@{/user/logout}">Logout</a>
         </li>
     </ul>
 </nav>
@@ -69,7 +68,7 @@
                 <a href="#sql_submenu"
                    th:class="${((active=='sqli_jdbc.html') || (active=='sqli_mybatis.html')) ? 'nav-link active':'nav-link'}"
                    data-toggle="collapse">
-                    <i class="lnr lnr-code"></i><span>SQL注入</span><i
+                    <i class="lnr lnr-code"></i><span>SQL Injection</span><i
                         class="icon-submenu lnr lnr-chevron-left"></i></a>
                 <div id="sql_submenu"
                      th:class="${((active=='sqli_jdbc.html') || (active=='sqli_mybatis.html')) ? 'collapsed':'collapse'}">
@@ -93,7 +92,7 @@
                 <a href="#xss_submenu"
                    th:class="${((active=='xss_store.html') || (active=='xss_reflect.html')) ? 'nav-link active':'nav-link'}"
                    data-toggle="collapse">
-                    <i class="lnr lnr-cross"></i><span>跨站脚本</span><i
+                    <i class="lnr lnr-cross"></i><span>Cross-site scripting (XSS) </span><i
                         class="icon-submenu lnr lnr-chevron-left"></i></a>
                 <div id="xss_submenu"
                      th:class="${((active=='xss_reflect.html') || (active=='xss_store.html')) ? 'collapsed':'collapse'}">
@@ -101,12 +100,12 @@
                         <li>
                             <a th:class="${active=='xss_reflect.html' ? 'nav-link active':'nav-link'}"
                                th:href="@{/index/xss}">
-                                <i class="lnr lnr-bug"></i><span>反射型</span></a>
+                                <i class="lnr lnr-bug"></i><span>Reflected XSS</span></a>
                         </li>
                         <li>
                             <a th:class="${active=='xss_store.html' ? 'nav-link active':'nav-link'}"
                                th:href="@{/index/xss/store}">
-                                <i class="lnr lnr-bug"></i><span>存储型</span></a>
+                                <i class="lnr lnr-bug"></i><span>Stored XSS</span></a>
                         </li>
                     </ul>
                 </div>

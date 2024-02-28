@@ -20,27 +20,24 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bug"></span>
-                        漏洞描述</a>
+                        Vulnerability description</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> 安全编码</a>
+                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> Secure Coding</a>
                 </li>
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">
                     SQLI(SQL Injection)，
-                    SQL注入是因为程序未能正确对用户的输入进行检查，将用户的输入以拼接的方式带入SQL语句，导致了SQL注入的产生。攻击者可通过SQL注入直接获取数据库信息，造成信息泄漏。<br>
-                    JDBC有两个方法执行SQL语句，分别是PrepareStatement和Statement。
+                    In computing, SQL injection is a code injection technique used to attack data-driven applications, in which malicious SQL statements are inserted into an entry field for execution. 
                 </div>
                 <div class="tab-pane fade" id="bb">
                     <textarea disabled="disabled" class="form-control shadow-sm p-3 mb-5 rounded" id="coder"
                               style="height: 180px;">
-【必须】SQL语句默认使用预编译并绑定变量
- Web后台系统应默认使用预编译绑定变量的形式创建sql语句，保持查询语句和数据相分离。以从本质上避免SQL注入风险。
+[Required] SQL statements must default to using precompiled and bound variables. Web backend systems should default to creating SQL statements using precompiled bound variables to keep query logic separate from data, fundamentally avoiding the risk of SQL injection.
 
-【必须】屏蔽异常栈
- 应用程序出现异常时，禁止将数据库版本、数据库结构、操作系统版本、堆栈跟踪、文件名和路径信息、SQL 查询字符串等对攻击者有用的信息返回给客户端。建议重定向到一个统一、默认的错误提示页面，进行信息过滤。
+[Required] Shielding of Exception Stacks: When an application encounters an exception, it must not return useful information to attackers such as database versions, database structures, operating system versions, stack traces, file names and paths, SQL query strings, etc. It is recommended to redirect to a unified, default error page for information filtering.
                     </textarea>
                 </div>
             </div>
@@ -48,7 +45,7 @@
             <hr>
 
             <div class="box-float">
-                <h1>Test Sql Injection</h1>
+                <h1>Test JDBC Sql Injection</h1>
 				<form id="form-login" method="post" action="/SQLI/JDBC/vulJdbc">
 				<table cellpadding="5" style = "font-size : 30px ">
 				  <tr>
@@ -61,7 +58,7 @@
 				  </tr>
 				  <tr>
 				    <td colspan="2">
-				      <input style = "height: 40px; width:100px" type="button" onclick="login()" value="login" />
+				      <input style = "height: 50px; width:100px" type="button" onclick="login()" value="login" />
 				    </td>
 				    
 				    <td colspan="2">

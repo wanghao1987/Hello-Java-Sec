@@ -12,37 +12,35 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="vul_header">
-                <span>XSS漏洞</span>
+                <span>Reflected XSS Attack</span>
             </div>
             <h3></h3>
             <hr>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bug"></span>
-                        漏洞描述</a>
+                        Vulnerability description</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> 安全编码</a>
+                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> Secure Coding</a>
                 </li>
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">
-                    XSS (Cross-Site Scripting)
-                    跨站脚本攻击是一种Web安全漏洞，攻击者通过在Web页面中注入恶意代码，如JavaScript脚本，来攻击用户，利用Web应用程序对用户输入数据的信任，以盗取用户信息、会话信息或在用户浏览器上执行其他恶意操作。<br><br>
-                    反射型 XSS 是将恶意代码通过 URL 参数等输入方式注入到 Web 页面中，并在用户访问这个页面时，恶意代码被执行。
-                </div>
+                    Reflected attacks are those where the injected script is reflected off the web server, such as in an error message, search result, or any other response that includes some or all of the input sent to the server as part of the request. Reflected attacks are delivered to victims via another route, such as in an e-mail message, or on some other website. When a user is tricked into clicking on a malicious link, submitting a specially crafted form, or even just browsing to a malicious site, the injected code travels to the vulnerable web site, which reflects the attack back to the user’s browser. The browser then executes the code because it came from a “trusted” server. Reflected XSS is also sometimes referred to as Non-Persistent or Type-I XSS (the attack is carried out through a single request / response cycle).
+				</div>
                 <div class="tab-pane fade" id="bb">
                     <textarea disabled="disabled" class="form-control shadow-sm p-3 mb-5 rounded" id="coder"
                               style="height: 260px;">
-【必须】外部输入拼接到response页面前进行编码处理
- 当响应“content-type”为“html”类型时，外部输入拼接到响应包中，需根据输出位置进行编码处理,需要对以下6个特殊字符进行HTML实体编码(&, <, >, ", ',/)，也可参考或直接使用业界已有成熟第三方库如ESAPI。
+【Mandatory】Encode external inputs before concatenating them onto the response page.
+When the response "content-type" is of "html" type, external inputs concatenated into the response package should undergo encoding based on their output position. It's necessary to perform HTML entity encoding for the following 6 special characters (&, <, >, ", ', /), and you can also refer to or directly use mature third-party libraries like ESAPI.
 
-【必须】设置正确的HTTP响应包类型
- 响应包的HTTP头“Content-Type”必须正确配置响应包的类型，禁止非HTML类型的响应包设置为“text/html”。此举会使浏览器在直接访问链接时，将非HTML格式的返回报文当做HTML解析，增加反射型XSS的触发几率。
+【Mandatory】Set the correct HTTP response package type.
+The HTTP header "Content-Type" of the response package must be configured correctly according to the type of the response package. Non-HTML types of response packages should not be set as "text/html". Doing so will cause browsers to interpret non-HTML formatted response messages as HTML when accessing links directly, thereby increasing the likelihood of triggering reflected XSS.
 
-【建议】设置安全的HTTP响应头
- 控制用户登录鉴权的Cookie字段 应当设置HttpOnly属性以防止被XSS漏洞/JavaScript操纵泄漏。
+【Recommendation】Set secure HTTP response headers.
+The Cookie field controlling user login authentication should set the HttpOnly attribute to prevent XSS vulnerabilities/JavaScript manipulation leaks.
                     </textarea>
                 </div>
             </div>

@@ -13,32 +13,27 @@
 
         <main role="main" class="col-md-10 ml-sm-auto pt-3 px-4">
             <div class="vul_header">
-                <span>SQL Injection - MyBatis框架</span>
+                <span>SQL Injection - MyBatis</span>
             </div>
             <hr>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bug"></span>
-                        漏洞描述</a>
+                        Vulnerability description</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> 安全编码</a>
+                    <a class="nav-link" data-toggle="tab" href="#bb"><span class="lnr lnr-bullhorn"></span> Secure Coding</a>
                 </li>
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">
-                    SQLI(SQL Injection)，
-                    SQL注入是因为程序未能正确对用户的输入进行检查，将用户的输入以拼接的方式带入SQL语句，导致了SQL注入的产生。攻击者可通过SQL注入直接获取数据库信息，造成信息泄漏。<br>
-                    MyBatis框架底层已经实现了对SQL注入的防御，但存在使用不当的情况下，仍然存在SQL注入的风险。
+                <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">                    
+SQL injection (SQLI) occurs when a program fails to properly check user input and incorporates it into an SQL statement by concatenation, leading to SQL injection. Attackers can directly access database information and cause information leakage through SQL injection. While the underlying MyBatis framework has implemented defenses against SQL injection, there still remains a risk of SQL injection when it is improperly used.
                 </div>
                 <div class="tab-pane fade" id="bb">
-                    <textarea disabled="disabled" class="form-control shadow-sm p-3 mb-5 rounded" id="coder"
-                              style="height: 130px;">
-【必须】SQL语句默认使用预编译并绑定变量
- 使用Mybatis作为持久层框架，应通过#{}语法进行参数绑定，MyBatis 会创建 PreparedStatement 参数占位符，并通过占位符安全地设置参数。
- 针对order by 注入可以在java层面做映射来进行解决。
-                    </textarea>
+                    <textarea disabled="disabled" class="form-control shadow-sm p-3 mb-5 rounded" id="coder">
+The SQL statements must use pre-compilation and bind variables by default. When using MyBatis as the persistence layer framework, parameter binding should be done using the #{} syntax. 
+MyBatis will create PreparedStatement parameter placeholders and safely set parameters through these placeholders.</textarea>
                 </div>
             </div>
             <hr>
