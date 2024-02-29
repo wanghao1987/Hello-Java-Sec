@@ -49,20 +49,19 @@ Control the Cookie field for user login authentication, and set the HttpOnly att
 
             <div class="box-float">
                 <div class="float1">
-                    <h5><span class="lnr lnr-bug"> 漏洞代码</span></h5>
-                    <div class="container">
+                    <h5><span class="lnr lnr-bug"> Test</span></h5>
+                   <!--  <div class="container">
                         <div class="card">
                             <div class="card-body">
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="content" name="content"
                                            value="<script>alert(1)</script>" style="color: #b5babb">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="submitForm()">提交
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="submitForm()">Submit
                                         </button>
                                     </div>
                                 </div>
                                 <hr>
-
                                 <div class="form-group">
                                     <table class="table table-striped table-bordered table-sm" id="xssTableVul">
                                         <thead>
@@ -77,62 +76,8 @@ Control the Cookie field for user login authentication, and set the HttpOnly att
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <label for="code1"></label><textarea class="form-control" id="code1">
-public String save(HttpServletRequest request) {
-    String content = request.getParameter("content");
-    xssMapper.add(content);
-    return "success";
- }
-                    </textarea><br><br>
-                </div>
-
-                <div class="float2">
-                    <h5><span class="lnr lnr-bug"> 安全代码</span></h5>
-                    <div class="container">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="content2" name="content">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-sm btn-success" onclick="submitForm()"
-                                                placeholder="<script>alert(1)</script>">提交
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr>
-
-                                <div class="form-group">
-                                    <table class="table table-striped table-bordered table-sm" id="xssTableSafe">
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Data</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <label for="code2"></label><textarea class="form-control" id="code2">
-// 方案一、后端输入转义
-public String safeStore(HttpServletRequest request) {
-    String content = request.getParameter("content");
-    String safe_content = HtmlUtils.htmlEscape(content);
-    xssMapper.add(safe_content);
-    return "success";
-}
-
-// 方案二、前端输出转义
-$('#xssTableSafe tbody').append('<tr><td>' + item.id + '</td><td>' + $('<div/>').text(item.content).html() + '</td></tr>');
-                    </textarea><br><br>
-                </div>
+                    </div>                   -->
+                </div>              
             </div>
         </main>
     </div>
