@@ -29,8 +29,9 @@ public class MyBatis {
     @ApiOperation(value = "vul：Mybatis使用${}查询2")
     @GetMapping("/vul/search")
     public List<User> search(@RequestParam("q") String q) {
-        log.info("[vul] mybaits: " + q);
-        return userMapper.search(q);
+       log.info("[vul] mybaits: " + q);
+       return userMapper.search(q);
+       // return userMapper.queryById1(q);
     }
 
 
