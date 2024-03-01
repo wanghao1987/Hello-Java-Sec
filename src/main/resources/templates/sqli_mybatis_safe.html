@@ -8,11 +8,11 @@
    function submitFun() {
     	var inputdata = $('#qinput').val();
         $.ajax({
-            url: '/SQLI/MyBatis/vul/search',
+            url: '/SQLI/MyBatis/safe/query',
             method: 'GET',
             dataType:"json",
             data: {
-            	"q": inputdata
+            	"user": inputdata
             },
             success: function (data) {
             	$('#sqlTableVul tbody').empty();
@@ -30,25 +30,26 @@
 <div class="container-fluid">
     <div class="row">
         <!-- 侧边栏 -->
-        <div th:replace="~{commons/commons::siderbar(active='sqli_mybatis.html')}"></div>
+        <div th:replace="~{commons/commons::siderbar(active='sqli_mybatis_safe.html')}"></div>
 
         <main role="main" class="col-md-10 ml-sm-auto pt-3 px-4">
             <div class="vul_header">
-                <span>SQL Injection - MyBatis</span>
+                <span>SQL Injection - MyBatis - Best Practice</span>
             </div>
             <hr>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bug"></span>
-                        Vulnerability description</a>
-                </li>
-               
+                    <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bullhorn"></span>
+                        Secure Coding</a>
+                </li>                
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">                    
-SQL injection (SQLI) occurs when a program fails to properly check user input and incorporates it into an SQL statement by concatenation, leading to SQL injection. Attackers can directly access database information and cause information leakage through SQL injection. While the underlying MyBatis framework has implemented defenses against SQL injection, there still remains a risk of SQL injection when it is improperly used.
-                </div>               
+The SQL statements must use pre-compilation and bind variables by default. When using MyBatis as the persistence layer framework, parameter binding should be done using the #{} syntax. 
+MyBatis will create PreparedStatement parameter placeholders and safely set parameters through these placeholders.
+                </div>
+                
             </div>
             <hr>
 

@@ -52,43 +52,31 @@ public class JDBC {
 
     
     /**
-     * @poc http://127.0.0.1:8888/SQLI/JDBC/vul1?id=1' and updatexml(1,concat(0x7e,(SELECT user()),0x7e),1)--%20+
      * 
      * // aaaa' or 1=1 union select 1,'2
-     */
-   
+     */   
     @RequestMapping("/vulJdbc")
 	@ResponseBody
     public JsonResult vulJdbc(String username, String password) {
-
-    	// 创建JsonResult对象
-    			JsonResult jsonResult = new JsonResult();
-    		    
+    			JsonResult jsonResult = new JsonResult();    		    
     			Connection conn = null;
-    			try {
-//    			   
-    			    conn =
-    					       DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=America/New_York&" +
-    					                                   "user=root&password=root");
-
-    			    
+    			try {    			   
+    			    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=America/New_York&" +
+    					                                   "user=root&password=root");    			    
     			} catch (SQLException ex) {
     			    // handle any errors
     			    System.out.println("SQLException: " + ex.getMessage());
     			    System.out.println("SQLState: " + ex.getSQLState());
     			    System.out.println("VendorError: " + ex.getErrorCode());
     			}
-    			
     			Statement stmt = null;
     			ResultSet rs = null;
-
     			try {
     				// aaaa' or 1=1 union select 1,'2
     			    stmt = conn.createStatement();
     			    String sql = "SELECT username, password FROM t_user where username = '" + username + "' and password = '" + password +"'";
     			    System.out.println(sql);
-    			    rs = stmt.executeQuery(sql);
-    			    
+    			    rs = stmt.executeQuery(sql);    			    
     			    if(rs.next()) {
     			    	jsonResult.setState(1);
     			    }else {
@@ -124,12 +112,72 @@ public class JDBC {
 
     			        stmt = null;
     			    }
-    			}
-    			
-    			
-    		    // 返回结果
+    			} 
     			return jsonResult;
     }
+    
+    @RequestMapping("/safeJdbc")
+   	@ResponseBody
+   public JsonResult safeJdbc(String username, String password) {
+   			JsonResult jsonResult = new JsonResult();    		    
+   			Connection conn = null;
+   			try {    			   
+   			    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=America/New_York&" +
+   					                                   "user=root&password=root");    			    
+   			} catch (SQLException ex) {
+   			    // handle any errors
+   			    System.out.println("SQLException: " + ex.getMessage());
+   			    System.out.println("SQLState: " + ex.getSQLState());
+   			    System.out.println("VendorError: " + ex.getErrorCode());
+   			}
+   			PreparedStatement stmt = null;
+   			ResultSet rs = null;
+   			try {
+   			    
+   			    String sql = "SELECT username, password FROM t_user where username = ? and password = ?";
+   			    stmt = conn.prepareStatement(sql);
+   			    stmt.setString(1, username);
+   			    stmt.setString(2, password);
+   			    System.out.println(sql);
+   			    rs = stmt.executeQuery();    			    
+   			    if(rs.next()) {
+   			    	jsonResult.setState(1);
+   			    }else {
+   			    	jsonResult.setState(2);
+   			    }	
+   			    jsonResult.setSql(sql);
+   			    
+   			}
+   			catch (SQLException ex){
+   			    // handle any errors
+   			    System.out.println("SQLException: " + ex.getMessage());
+   			    System.out.println("SQLState: " + ex.getSQLState());
+   			    System.out.println("VendorError: " + ex.getErrorCode());
+   			}
+   			finally {
+   			    // it is a good idea to release
+   			    // resources in a finally{} block
+   			    // in reverse-order of their creation
+   			    // if they are no-longer needed
+
+   			    if (rs != null) {
+   			        try {
+   			            rs.close();
+   			        } catch (SQLException sqlEx) { } // ignore
+
+   			        rs = null;
+   			    }
+
+   			    if (stmt != null) {
+   			        try {
+   			            stmt.close();
+   			        } catch (SQLException sqlEx) { } // ignore
+
+   			        stmt = null;
+   			    }
+   			} 
+   			return jsonResult;
+   }
 
     
     

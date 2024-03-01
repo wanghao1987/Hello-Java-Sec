@@ -18,7 +18,9 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/index/spel").setViewName("spel");
         registry.addViewController("/index/ssti").setViewName("ssti");
         registry.addViewController("/index/sqli/jdbc").setViewName("sqli_jdbc");
+        registry.addViewController("/index/sqli/jdbc_safe").setViewName("sqli_jdbc_safe");
         registry.addViewController("/index/sqli/mybatis").setViewName("sqli_mybatis");
+        registry.addViewController("/index/sqli/mybatis_safe").setViewName("sqli_mybatis_safe");
         registry.addViewController("/index/ssrf").setViewName("ssrf");
         registry.addViewController("/index/traversal").setViewName("traversal");
         registry.addViewController("/index/xxe").setViewName("xxe");

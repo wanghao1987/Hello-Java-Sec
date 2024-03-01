@@ -71,7 +71,7 @@
                     <i class="lnr lnr-code"></i><span>SQL Injection</span><i
                         class="icon-submenu lnr lnr-chevron-left"></i></a>
                 <div id="sql_submenu"
-                     th:class="${((active=='sqli_jdbc.html') || (active=='sqli_mybatis.html')) ? 'collapsed':'collapse'}">
+                     th:class="${((active=='sqli_jdbc.html') || (active=='sqli_jdbc_safe.html') || (active=='sqli_mybatis.html') || (active=='sqli_mybatis_safe.html')) ? 'collapsed':'collapse'}">
                     <ul class="nav flex-column">
                         <li>
                             <a th:class="${active=='sqli_jdbc.html' ? 'nav-link active':'nav-link'}"
@@ -79,9 +79,19 @@
                                 <i class="lnr lnr-bug"></i><span>JDBC</span></a>
                         </li>
                         <li>
+                            <a th:class="${active=='sqli_jdbc_safe.html' ? 'nav-link active':'nav-link'}"
+                               th:href="@{/index/sqli/jdbc_safe}">
+                                <i class="lnr lnr-bug"></i><span>JDBC Without Vul</span></a>
+                        </li>
+                        <li>
                             <a th:class="${active=='sqli_mybatis.html' ? 'nav-link active':'nav-link'}"
                                th:href="@{/index/sqli/mybatis}">
                                 <i class="lnr lnr-bug"></i><span>MyBatis</span></a>
+                        </li>
+                        <li>
+                            <a th:class="${active=='sqli_mybatis_safe.html' ? 'nav-link active':'nav-link'}"
+                               th:href="@{/index/sqli/mybatis_safe}">
+                                <i class="lnr lnr-bug"></i><span>MyBatis Without Vul</span></a>
                         </li>
                     </ul>
                 </div>

@@ -9,27 +9,29 @@
 <div class="container-fluid">
     <div class="row">
         <!-- 侧边栏 -->
-        <div th:replace="~{commons/commons::siderbar(active='sqli_jdbc.html')}"></div>
+        <div th:replace="~{commons/commons::siderbar(active='sqli_jdbc_safe.html')}"></div>
 
         <main role="main" class="col-md-10 ml-sm-auto pt-3 px-4">
             <div class="vul_header">
-                <span>SQL Injection - JDBC</span>
+                <span>SQL Injection - JDBC - Best Practice</span>
             </div>
             <hr>
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bug"></span>
-                        Vulnerability description</a>
+                    <a class="nav-link active" data-toggle="tab" href="#aa"><span class="lnr lnr-bullhorn"></span>
+                        Secure Coding</a>
                 </li>
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane dec shadow-sm p-3 mb-4 rounded active" id="aa">
-                    SQLI(SQL Injection)，
-                    In computing, SQL injection is a code injection technique used to attack data-driven applications, in which malicious SQL statements are inserted into an entry field for execution. 
-                </div>
-               
+                	[Recommendation] SQL statements must default to using precompiled and bound variables. Web backend systems should default to creating SQL statements using precompiled bound variables to keep query logic separate from data, fundamentally avoiding the risk of SQL injection.
+					<br/>
+					<br/>
+					[Recommendation] Shielding of Exception Stacks: When an application encounters an exception, it must not return useful information to attackers such as database versions, database structures, operating system versions, stack traces, file names and paths, SQL query strings, etc. It is recommended to redirect to a unified, default error page for information filtering.
+       
+                </div>             
             </div>
 
             <hr>
@@ -77,10 +79,9 @@
 				 
 				 
 				 </div>
-				 <br/>
-				 <br/>
+				 
 				 <div>
-				 <span style="color:red; font-size:30px" id="span-sql">
+				 <span style="color:red;" id="span-sql">
 				
 				 </span>
 				 
@@ -96,7 +97,7 @@
 					$("#span-sql").empty();
 					
 					$.ajax({
-						"url":"/SQLI/JDBC//vulJdbc",
+						"url":"/SQLI/JDBC//safeJdbc",
 						"data":$("#form-login").serialize(),
 						"type":"post",
 						"dataType":"json",
