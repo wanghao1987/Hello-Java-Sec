@@ -1,5 +1,6 @@
 package com.best.hello.controller.SQLI;
 
+import com.best.hello.entity.Movie;
 import com.best.hello.entity.User;
 import com.best.hello.mapper.UserMapper;
 import io.swagger.annotations.Api;
@@ -33,6 +34,14 @@ public class MyBatis {
        return userMapper.search(q);
        // return userMapper.queryById1(q);
     }
+    
+    @ApiOperation(value = "vul：Mybatis使用${}查询2")
+    @GetMapping("/vul/blind")
+    public List<Movie> blind(@RequestParam("q") String q) {
+       List<Movie> list = userMapper.searchMovie(q);
+
+       return   list;
+     }
 
 
     /**

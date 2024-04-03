@@ -1,5 +1,6 @@
 package com.best.hello.mapper;
 
+import com.best.hello.entity.Movie;
 import com.best.hello.entity.User;
 import org.apache.ibatis.annotations.*;
 
@@ -41,5 +42,8 @@ public interface UserMapper {
     // 安全代码：@Select("select * from users where user like concat('%',#{q},'%')")
     @Select("select id, user from users where user like '%${q}%'")
     List<User> search(@Param("q") String q);
+    
+    @Select("select id, movie_name, publish_date, characters, gener, score from movies where movie_name like '%${q}%'")
+    List<Movie> searchMovie(@Param("q") String q);
 
 }

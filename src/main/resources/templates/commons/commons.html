@@ -71,7 +71,7 @@
                     <i class="lnr lnr-code"></i><span>SQL Injection</span><i
                         class="icon-submenu lnr lnr-chevron-left"></i></a>
                 <div id="sql_submenu"
-                     th:class="${((active=='sqli_jdbc.html') || (active=='sqli_jdbc_safe.html') || (active=='sqli_mybatis.html') || (active=='sqli_mybatis_safe.html')) ? 'collapsed':'collapse'}">
+                     th:class="${((active=='sqli_jdbc.html') || (active=='sqli_jdbc_safe.html') || (active=='sqli_mybatis.html') || (active=='sqli_mybatis_safe.html')  || (active=='sqli_mybatis_blind.html') || (active=='sqli_mybatis_inband.html')) ? 'collapsed':'collapse'}">
                     <ul class="nav flex-column">
                         <li>
                             <a th:class="${active=='sqli_jdbc.html' ? 'nav-link active':'nav-link'}"
@@ -92,6 +92,16 @@
                             <a th:class="${active=='sqli_mybatis_safe.html' ? 'nav-link active':'nav-link'}"
                                th:href="@{/index/sqli/mybatis_safe}">
                                 <i class="lnr lnr-bug"></i><span>MyBatis Without Vul</span></a>
+                        </li>
+                        <li>
+                            <a th:class="${active=='sqli_mybatis_blind.html' ? 'nav-link active':'nav-link'}"
+                               th:href="@{/index/sqli/blind}">
+                                <i class="lnr lnr-bug"></i><span>Blind Sql Injection</span></a>
+                        </li>
+                        <li>
+                            <a th:class="${active=='sqli_mybatis_inband.html' ? 'nav-link active':'nav-link'}"
+                               th:href="@{/index/sqli/inband}">
+                                <i class="lnr lnr-bug"></i><span>Inband</span></a>
                         </li>
                     </ul>
                 </div>
