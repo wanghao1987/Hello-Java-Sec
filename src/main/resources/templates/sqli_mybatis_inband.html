@@ -8,16 +8,29 @@
    function submitFun() {
     	var inputdata = $('#qinput').val();
         $.ajax({
-            url: '/SQLI/MyBatis/vul/search',
+            url: '/SQLI/MyBatis/vul/blind',
             method: 'GET',
             dataType:"json",
             data: {
             	"q": inputdata
             },
+            error: function (xhr, ajaxOptions, thrownError) {
+            	$('#sqlTableVul tbody').empty();
+                $('#errorDiv').html(xhr.responseText);
+            },
+            
             success: function (data) {
+            	$('#errorDiv').val('');
+            	$('#errorDiv').html('');
             	$('#sqlTableVul tbody').empty();
                 $.each(data, function (index, item) {
-                    $('#sqlTableVul tbody').append('<tr><td>' + item.id + '</td><td>' + item.user + '</td><td><span class="lnr lnr-trash"></span></button></td></tr>');
+                    $('#sqlTableVul tbody').append('<tr><td>' + item.id + '</td>' + 
+                    		'<td>' + item.movie_name + '</td>' + 
+                    		'<td>' + item.publish_date + '</td>' + 
+                    		'<td>' + item.characters + '</td>' + 
+                    		'<td>' + item.gener + '</td>' + 
+                    		'<td>' + item.score + '</td>' + 
+                    		'</tr>');
                 });
             }
         });
@@ -34,7 +47,7 @@
 
         <main role="main" class="col-md-10 ml-sm-auto pt-3 px-4">
             <div class="vul_header">
-                <span>SQL Injection - Inband</span>
+                <span>SQL Injection - MyBatis</span>
             </div>
             <hr>
             <ul class="nav nav-tabs">
@@ -54,11 +67,9 @@ SQL injection (SQLI) occurs when a program fails to properly check user input an
 
             <div class="box-float">
                 <div class="float1">                   
-                    <h5><span class="lnr lnr-bug"> Input user name and click search</span></h5>
+                    <h5><span class="lnr lnr-bug"> Input movie name and click search</span></h5>
                     <br/>
-                    <div>Use the following script to attack : </div>
-                    <div> test%' union select 1,@@version_compile_os # </div>
-                    <div> test%' union select 1,user() # </div>
+                   
                     <br/>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="qinput"
@@ -72,14 +83,19 @@ SQL injection (SQLI) occurs when a program fails to properly check user input an
                                     <table class="table table-striped table-bordered table-sm" id="sqlTableVul">
                                         <thead>
                                         <tr>
-                                            <th>UserId</th>
-                                            <th>UserName</th>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Release Date</th>
+                                            <th>Character</th>
+                                            <th>Gener</th>
+                                            <th>Score</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         </tbody>
                                     </table>
-                                </div>                     
+                          </div> 
+                          <div id = 'errorDiv'></div>                    
                     
                    </div>
                   
