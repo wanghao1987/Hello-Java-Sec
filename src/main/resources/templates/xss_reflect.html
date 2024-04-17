@@ -74,18 +74,40 @@ The Cookie field controlling user login authentication should set the HttpOnly a
     </div>
 </div>
 
-
+<div th:fragment="script">
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/js/bootstrap-4.6.0.min.js}"></script>
+    <script th:src="@{/js/codemirror.js}"></script>
+    <script th:src="@{/js/groovy.js}"></script>
+</div>
 <script>
 function submitToBack(){	
 // window.location.href = "http://www.google.com" 
-var data = document.getElementById('nameinput').value;
-$('#myDiv').html(data);
+// var data = document.getElementById('nameinput').value;
+// $('#myDiv').html(data);
+//var tt = "window.location.href = 'http://www.google.com' "
+// alert(encodeURI(tt))
+$.ajax({
+	"url":"/XSS/reflect",
+	"data":{"content": document.getElementById('nameinput').value},
+	"type":"get",
+	"dataType":"json",
+	"success":function(res) {
+		
+		$('#myDiv').html(res);
+		
+	},
+	"error":function(res){
+		console.log(res)
+		$('#myDiv').html(res.responseText);
+	}
+});
 
 }
 </script>
 
 <!-- 引入script -->
-<div th:replace="~{commons/commons::script}"></div>
+<!-- <div th:replace="~{commons/commons::script}"></div> -->
 
 
 </body>

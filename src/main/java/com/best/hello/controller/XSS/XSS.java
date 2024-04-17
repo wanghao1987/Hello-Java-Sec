@@ -1,5 +1,6 @@
 package com.best.hello.controller.XSS;
 
+import com.best.hello.entity.JsonResult;
 import com.best.hello.mapper.XSSMapper;
 import com.best.hello.util.Security;
 import io.swagger.annotations.Api;
@@ -40,10 +41,22 @@ public class XSS {
     @Autowired
     private XSSMapper xssMapper;
 
+//    @ApiOperation(value = "vul: 反射型XSS", notes = "直接返回用户输入内容")
+//    @GetMapping("/reflect")
+//    public JsonResult xssReflect1(String content) {
+//        log.info("[vul] 反射型XSS：" + content);
+//        JsonResult jsonResult = new JsonResult();   
+//        jsonResult.setSql(content);
+//        return jsonResult;
+//    }
+    
+    
+    // http://localhost:8888/XSS/reflect?content=%3Cscript%3Ewindow.location.href%20=%20%22http://www.google.com%22%3C/script%3E
     @ApiOperation(value = "vul: 反射型XSS", notes = "直接返回用户输入内容")
     @GetMapping("/reflect")
     public String xssReflect1(String content) {
         log.info("[vul] 反射型XSS：" + content);
+        
         return content;
     }
 
