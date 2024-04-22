@@ -21,32 +21,32 @@ body {
 .sidebar-sticky {
     #position: sticky;
     top: 48px; /* Height of navbar */
-    height: calc(100vh - 20px); /* 侧边栏底部 */
+    height: calc(100vh - 20px); /* ä¾§è¾¹æ �åº•éƒ¨ */
     padding-top: 48px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-/* 侧边栏字体 */
+/* ä¾§è¾¹æ �å­—ä½“ */
 .sidebar .nav-link {
     font-weight: 500;
     color: #AEB7C2;
 }
 
-/* 侧边栏样式 */
+/* ä¾§è¾¹æ �æ ·å¼� */
 .sidebar .nav > li > a {
     padding: 9px 15px;
     color: #AEB7C2;
     border-left: 4px solid transparent;
 }
 
-/* 侧边栏图标 */
+/* ä¾§è¾¹æ �å›¾æ ‡ */
 .sidebar .nav i {
     margin-right: 10px;
     font-size: 16px;
 }
 
-/* 下拉图标 */
+/* ä¸‹æ‹‰å›¾æ ‡ */
 .sidebar .nav > li > a[data-toggle="collapse"] .icon-submenu {
     display: inline-block;
     vertical-align: middle;
@@ -102,12 +102,12 @@ body {
     top: -2px;
 }
 
-/* 激活后的颜色 */
+/* æ¿€æ´»å�Žçš„é¢œè‰² */
 .sidebar .nav-link.active {
     color: white;
 }
 
-/* 鼠标放上去字体颜色变白 */
+/* é¼ æ ‡æ”¾ä¸ŠåŽ»å­—ä½“é¢œè‰²å�˜ç™½ */
 .sidebar .nav > li > a:hover, .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
     color: #fff;
     background-color: transparent;
@@ -119,24 +119,24 @@ body {
     border-left-color: transparent;
 }
 
-/* 鼠标放上去图标变蓝 */
+/* é¼ æ ‡æ”¾ä¸ŠåŽ»å›¾æ ‡å�˜è“� */
 .sidebar .nav > li > a:hover i, .sidebar .nav > li > a:focus i, .sidebar .nav > li > a.active i {
     color: #00AAFF;
 }
 
-/* 鼠标放上去left变蓝*/
+/* é¼ æ ‡æ”¾ä¸ŠåŽ»leftå�˜è“�*/
 .sidebar .nav > li > a:hover {
     border-left-color: #00AAFF;
 }
 
-/* 激活后的背景样式 */
+/* æ¿€æ´»å�Žçš„èƒŒæ™¯æ ·å¼� */
 .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
     background-color: #252c35;
     border-left-color: #00AAFF;
 }
 
 
-/* 面板 */
+/* é�¢æ�¿ */
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
@@ -169,8 +169,8 @@ body {
 
 
 .vul_header span {
-    font-size: 20px;
-    font-weight: 10;
+    font-size: 30px;
+    font-weight: 15;
 }
 
 .vul_header a {
@@ -179,12 +179,12 @@ body {
 }
 
 .dec {
-    font-size: 15px;
+    font-size: 20px;
     background-color: #dce9f8;
 }
 
 .nav-tabs .nav-link {
-    font-size: 15px;
+    font-size: 30px;
 }
 
 .nav-tabs a.active.nav-link {
